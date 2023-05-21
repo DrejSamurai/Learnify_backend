@@ -39,11 +39,11 @@ public class User implements UserDetails {
       @Enumerated(EnumType.STRING)
       private Role role;
 
-      @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-      private Student student;
+    //  @OneToOne(mappedBy = "id_korisnik", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    //  private Student student;
 
-      @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-      private Mentor mentor;
+      //@OneToOne(mappedBy = "id_korisnik", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+     // private Mentor mentor;
 
       @Override
       public Collection<? extends GrantedAuthority> getAuthorities() {
