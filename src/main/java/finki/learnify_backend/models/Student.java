@@ -19,7 +19,7 @@ public class Student {
     @Column(name = "id_korisnik", nullable = false)
     private Long userId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_korisnik", referencedColumnName = "id_korisnik", insertable = false, updatable = false)
-    private User user;
+   // @OneToOne(fetch = FetchType.LAZY)
+   // @JoinColumn(name = "id_korisnik", referencedColumnName = "id_korisnik", insertable = false, updatable = false)
+   // private User user;
 }

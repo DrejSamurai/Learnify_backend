@@ -23,7 +23,7 @@ public class Mentor {
     @Column(name = "id_korisnik", nullable = false)
     private Long id_User;
 
-    @OneToOne
-    @JoinColumn(name = "id_korisnik", referencedColumnName = "id_korisnik", insertable = false, updatable = false)
-    private User users;
+   // @OneToOne
+   // @JoinColumn(name = "id_korisnik", referencedColumnName = "id_korisnik", insertable = false, updatable = false)
+   // private User users;
 }
