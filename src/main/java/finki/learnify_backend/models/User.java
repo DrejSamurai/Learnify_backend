@@ -21,7 +21,7 @@ import java.util.List;
 public class User implements UserDetails {
       @Id
       @GeneratedValue(strategy = GenerationType.IDENTITY)
-      @Column(name = "id_korisnik")
+      @Column(name = "user_id")
       private Long id;
 
       @Column(name = "k_ime")
@@ -38,12 +38,6 @@ public class User implements UserDetails {
 
       @Enumerated(EnumType.STRING)
       private Role role;
-
-    //  @OneToOne(mappedBy = "id_korisnik", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    //  private Student student;
-
-      //@OneToOne(mappedBy = "id_korisnik", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-     // private Mentor mentor;
 
       @Override
       public Collection<? extends GrantedAuthority> getAuthorities() {

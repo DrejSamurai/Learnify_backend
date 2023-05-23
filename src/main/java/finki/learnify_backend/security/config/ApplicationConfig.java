@@ -1,4 +1,4 @@
-package finki.learnify_backend.security;
+package finki.learnify_backend.security.config;
 
 import finki.learnify_backend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
