@@ -5,7 +5,7 @@ import finki.learnify_backend.models.User;
 import finki.learnify_backend.repository.UserRepository;
 import finki.learnify_backend.security.auth.AuthenticationRequest;
 import finki.learnify_backend.security.auth.AuthenticationResponse;
-import finki.learnify_backend.security.auth.RegisterRequest;
+import finki.learnify_backend.dto.RegisterRequest;
 import finki.learnify_backend.security.jwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;

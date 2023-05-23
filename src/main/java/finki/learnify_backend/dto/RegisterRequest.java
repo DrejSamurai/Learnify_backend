@@ -1,4 +1,4 @@
-package finki.learnify_backend.security.auth;
+package finki.learnify_backend.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
