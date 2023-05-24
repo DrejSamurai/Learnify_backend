@@ -1,6 +1,6 @@
 package finki.learnify_backend.security.config;
 
-import finki.learnify_backend.security.JWTAuthFilter;
+import finki.learnify_backend.security.auth.JWTAuthFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,8 +19,6 @@ public class SecurityConfig {
     private final AuthenticationProvider authenticationProvider;
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-
-        //To do Creating acc does not need JWT token
 
         http
                 .csrf()
