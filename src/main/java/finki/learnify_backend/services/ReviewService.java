@@ -22,7 +22,11 @@ public class ReviewService {
     public void addCourseRating(ReviewRequest request, Long userId){
        User user = userRepository.findById(userId).orElseThrow();
        Course course = courseRepository.findById(request.getCourseId()).orElseThrow();
-       Review review = new Review(request.getRating(), request.getContent(), user, course);
+       Review review = new Review(
+               request.getRating(),
+               request.getContent(),
+               user,
+               course);
        reviewRepository.save(review);
     }
 
