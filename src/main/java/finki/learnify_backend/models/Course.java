@@ -2,14 +2,19 @@ package finki.learnify_backend.models;
 
 import finki.learnify_backend.enumerators.Category;
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.util.Date;
 
 @Entity
-@Table
+@Table(name = "course")
 @EqualsAndHashCode
 @NoArgsConstructor
+@Data
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,6 +31,10 @@ public class Course {
     private Long price;
     @Column(name = "rating")
     private long rating;
+
+    @CreationTimestamp
+    @Column(name = "date_created")
+    private Date dateCreated;
 
     public Course(String title, String author, Category category, Long price, long rating) {
         this.title = title;

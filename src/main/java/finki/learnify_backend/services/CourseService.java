@@ -4,8 +4,13 @@ import finki.learnify_backend.enumerators.Category;
 import finki.learnify_backend.models.Course;
 import finki.learnify_backend.repository.CourseRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -13,8 +18,10 @@ import java.util.List;
 public class CourseService {
     private final CourseRepository courseRepository;
 
-    public List<Course> listAllCourses(){
-        return courseRepository.findAll();
+    public Page<Course> listAllCourses(Integer pageNo, Integer pageSize, String sortBy){
+        Pageable pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
+        Page<Course> page = courseRepository.findAllPaged(pageable);
+        return page;
     }
 
     public List<Course> listCoursesByCategory(String category){
