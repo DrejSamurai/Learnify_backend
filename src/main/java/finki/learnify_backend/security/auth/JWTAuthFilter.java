@@ -1,5 +1,6 @@
-package finki.learnify_backend.security;
+package finki.learnify_backend.security.auth;
 
+import finki.learnify_backend.services.jwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

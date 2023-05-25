@@ -1,4 +1,4 @@
-package finki.learnify_backend.security;
+package finki.learnify_backend.services;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

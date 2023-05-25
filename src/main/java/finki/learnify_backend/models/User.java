@@ -14,7 +14,7 @@ import java.util.List;
 @Data
 @Builder
 @Entity
-@Table(name = "korisnici")
+@Table(name = "course_users")
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
@@ -24,16 +24,16 @@ public class User implements UserDetails {
       @Column(name = "user_id")
       private Long id;
 
-      @Column(name = "k_ime")
-      private String name;
+      @Column(name = "first_name")
+      private String first_name;
 
-      @Column(name = "k_prezime")
+      @Column(name = "last_name")
       private String last_name;
 
-      @Column(name = "k_mail")
+      @Column(name = "email")
       private String email;
 
-      @Column(name = "k_password")
+      @Column(name = "password")
       private String password;
 
       @Enumerated(EnumType.STRING)

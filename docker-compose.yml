@@ -1,0 +1,19 @@
+version: "3"
+services:
+  learnify-postgres-service:
+    image: "postgres"
+    container_name: "learnify-db"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=learnify
+    ports:
+      - "5432:5432"
+  pgadmin-service:
+    image: "dpage/pgadmin4"
+    container_name: "pgadmin2"
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=learnify@learnify.com
+      - PGADMIN_DEFAULT_PASSWORD=learnify
+    ports:
+      - "82:80"

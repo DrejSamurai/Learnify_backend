@@ -5,8 +5,7 @@ import finki.learnify_backend.models.User;
 import finki.learnify_backend.repository.UserRepository;
 import finki.learnify_backend.security.auth.AuthenticationRequest;
 import finki.learnify_backend.security.auth.AuthenticationResponse;
-import finki.learnify_backend.security.auth.RegisterRequest;
-import finki.learnify_backend.security.jwtService;
+import finki.learnify_backend.dto.RegisterRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -24,7 +23,7 @@ public class AuthenticationService {
 
     public AuthenticationResponse register(RegisterRequest request) {
         var user = User.builder()
-                .name(request.getFirstname())
+                .first_name(request.getFirstname())
                 .last_name(request.getLastname())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
@@ -32,6 +31,7 @@ public class AuthenticationService {
                 .build();
         userRepository.save(user);
         var jwtToken = jwt_Service.generateToken(user);
+
         return AuthenticationResponse
                 .builder()
                 .token(jwtToken)
@@ -47,6 +47,7 @@ public class AuthenticationService {
         var user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow();
         var jwtToken = jwt_Service.generateToken(user);
+
         return AuthenticationResponse
                 .builder()
                 .token(jwtToken)
