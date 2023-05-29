@@ -1,11 +1,11 @@
 package finki.learnify_backend.services;
 
-import finki.learnify_backend.enumerators.Role;
+import finki.learnify_backend.models.enumerators.Role;
 import finki.learnify_backend.models.User;
 import finki.learnify_backend.repository.UserRepository;
 import finki.learnify_backend.security.auth.AuthenticationRequest;
 import finki.learnify_backend.security.auth.AuthenticationResponse;
-import finki.learnify_backend.dto.RegisterRequest;
+import finki.learnify_backend.models.requests.RegisterRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

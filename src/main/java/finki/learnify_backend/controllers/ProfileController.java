@@ -1,10 +1,11 @@
 package finki.learnify_backend.controllers;
 
-import finki.learnify_backend.repository.UserRepository;
+import finki.learnify_backend.models.dto.UpdateUserDTO;
+import finki.learnify_backend.models.User;
+import finki.learnify_backend.services.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -12,7 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @CrossOrigin("http://localhost:3000")
 public class ProfileController {
-    private final UserRepository userRepository;
+    private final UserService userService;
 
-
+    @PutMapping("/api/profile/{userId}")
+    public ResponseEntity<String> updateUser(@PathVariable Long userId, @RequestBody UpdateUserDTO updateUserDto) {
+        User user = userService.updateUserNameAndLastname(userId, updateUserDto.getFirstname(), updateUserDto.getLastname());
+        return ResponseEntity.ok("User updated successfully.");
+    }
 }

@@ -1,9 +1,7 @@
 package finki.learnify_backend.services;
 
-import finki.learnify_backend.dto.QuestionRequest;
-import finki.learnify_backend.enumerators.Category;
+import finki.learnify_backend.models.requests.QuestionRequest;
 import finki.learnify_backend.models.Question;
-import finki.learnify_backend.models.Quiz;
 import finki.learnify_backend.repository.QuestionRepository;
 import finki.learnify_backend.repository.QuizRepository;
 import lombok.RequiredArgsConstructor;

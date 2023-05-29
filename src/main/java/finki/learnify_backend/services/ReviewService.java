@@ -1,6 +1,6 @@
 package finki.learnify_backend.services;
 
-import finki.learnify_backend.dto.ReviewRequest;
+import finki.learnify_backend.models.requests.ReviewRequest;
 import finki.learnify_backend.models.Course;
 import finki.learnify_backend.models.Review;
 import finki.learnify_backend.models.User;

@@ -1,6 +1,7 @@
 package finki.learnify_backend.models;
 
-import finki.learnify_backend.enumerators.Role;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import finki.learnify_backend.models.enumerators.Role;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -20,7 +21,6 @@ import java.util.List;
 public class User implements UserDetails {
       @Id
       @GeneratedValue(strategy = GenerationType.IDENTITY)
-      @Column(name = "user_id")
       private Long id;
 
       @Column(name = "first_name")
@@ -38,6 +38,17 @@ public class User implements UserDetails {
       @Enumerated(EnumType.STRING)
       @Column(name = "role")
       private Role role;
+
+      @Column(name = "user_bio")
+      private String bio;
+
+      @ManyToMany
+      @JoinTable(
+              name = "course_has_participants",
+              joinColumns = @JoinColumn(name = "user_id"),
+              inverseJoinColumns = @JoinColumn(name = "course_id"))
+      @JsonBackReference
+      private List<Course> courses;
 
       @Override
       public Collection<? extends GrantedAuthority> getAuthorities() {

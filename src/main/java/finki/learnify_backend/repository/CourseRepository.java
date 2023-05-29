@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface CourseRepository extends JpaRepository<Course, Long> {
@@ -19,5 +20,5 @@ public interface CourseRepository extends JpaRepository<Course, Long> {
 
     List<Course> getCourseByAuthor(String author);
 
-    List<Course> getCourseByPrice(Long price);
+    Optional<Course> findByTitle(String title);
 }

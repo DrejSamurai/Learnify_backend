@@ -1,4 +1,4 @@
-package finki.learnify_backend.dto;
+package finki.learnify_backend.models.requests;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

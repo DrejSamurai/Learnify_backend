@@ -1,10 +1,9 @@
 package finki.learnify_backend.models;
 
-import finki.learnify_backend.enumerators.Category;
+import finki.learnify_backend.models.enumerators.Category;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.util.List;
 

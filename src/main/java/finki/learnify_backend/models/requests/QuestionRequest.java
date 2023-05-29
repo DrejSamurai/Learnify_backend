@@ -1,4 +1,4 @@
-package finki.learnify_backend.dto;
+package finki.learnify_backend.models.requests;
 
 import finki.learnify_backend.models.Answer;
 import finki.learnify_backend.models.Quiz;

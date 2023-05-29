@@ -1,11 +1,14 @@
 package finki.learnify_backend.controllers;
 
+import finki.learnify_backend.models.dto.EnrollmentDTO;
 import finki.learnify_backend.models.Course;
 import finki.learnify_backend.services.CourseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/courses")
@@ -24,5 +27,13 @@ public class CoursesController {
                                       @RequestParam(defaultValue = "3") Integer pageSize,
                                       @RequestParam(defaultValue = "id") String sortBy){
         return this.courseService.listAllCourses(pageNo, pageSize, sortBy);
+    }
+    @PostMapping("/all-courses/category")
+    public ResponseEntity<List<Course>> getAllCoursesByCategory(@RequestParam String category) {
+        return ResponseEntity.ok(courseService.listCoursesByCategory(category));
+    }
+    @PostMapping("/enroll-user")
+    private ResponseEntity<Course> enrollUser(@RequestBody EnrollmentDTO enrollmentDto){
+        return ResponseEntity.ok().body(this.courseService.enrollUser(enrollmentDto));
     }
 }

@@ -1,9 +1,6 @@
-package finki.learnify_backend.dto;
+package finki.learnify_backend.models.requests;
 
-import finki.learnify_backend.enumerators.Category;
-import jakarta.persistence.Column;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import finki.learnify_backend.models.enumerators.Category;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
