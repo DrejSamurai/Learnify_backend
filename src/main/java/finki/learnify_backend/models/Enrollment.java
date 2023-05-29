@@ -7,13 +7,12 @@ import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import org.hibernate.Hibernate;
-import org.hibernate.annotations.*;
 
+import org.hibernate.annotations.*;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.Instant;
-import java.util.Objects;
+
 
 @Entity
 @Data
@@ -38,19 +37,31 @@ public class Enrollment {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Course course;
 
-    @Column(name = "isCompleted", nullable = false)
+    @Column(name = "is_completed", nullable = false)
     @ColumnDefault(value = "false")
     private Boolean isCompleted = false;
 
+    @Column(name = "next_position")
+    @ColumnDefault(value = "1")
+    private Integer nextPosition = 1;
+
+    @ColumnDefault("0")
+    @Column(name = "progress", nullable = false, precision = 6, scale = 2)
+    private BigDecimal progress = BigDecimal.ZERO;
+
     @CreationTimestamp
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    @Column(name = "createdAt", nullable = false)
+    @Column(name = "created_at", nullable = false)
     private Instant createdAt;
 
     @UpdateTimestamp
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    @Column(name = "updatedAt")
+    @Column(name = "updated_at")
     private Instant updatedAt = null;
+
+    public BigDecimal getProgress() {
+        return progress.setScale(0, RoundingMode.HALF_UP);
+    }
 
     public Enrollment(User user, Course course) {
         this.user = user;

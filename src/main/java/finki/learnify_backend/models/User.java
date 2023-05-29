@@ -10,7 +10,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
-
 @Data
 @Builder
 @Entity
@@ -37,6 +36,7 @@ public class User implements UserDetails {
       private String password;
 
       @Enumerated(EnumType.STRING)
+      @Column(name = "role")
       private Role role;
 
       @Override

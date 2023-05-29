@@ -21,7 +21,7 @@ public class CoursesController {
 
     @PostMapping("/all-courses")
     public Page<Course> getAllCourses(@RequestParam(defaultValue = "0") Integer pageNo,
-                                      @RequestParam(defaultValue = "2") Integer pageSize,
+                                      @RequestParam(defaultValue = "3") Integer pageSize,
                                       @RequestParam(defaultValue = "id") String sortBy){
         return this.courseService.listAllCourses(pageNo, pageSize, sortBy);
     }
