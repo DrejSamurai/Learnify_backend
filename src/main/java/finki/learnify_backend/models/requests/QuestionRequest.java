@@ -18,8 +18,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class QuestionRequest {
-    private String text;
-    private Instant createdAt;
+    private String question;
     private List<Answer> answers;
-    private Quiz quiz;
 }

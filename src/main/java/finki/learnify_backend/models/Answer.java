@@ -14,7 +14,7 @@ public class Answer {
     @Column(name = "answer", nullable = false)
     private String answer;
 
-    @Column(name = "isCorrect", nullable = false)
+    @Column(name = "is_correct", columnDefinition = "BOOLEAN default FALSE")
     private Boolean isCorrect;
 
     public Answer(String answer, Boolean isCorrect) {

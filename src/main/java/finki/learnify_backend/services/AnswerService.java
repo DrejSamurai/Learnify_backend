@@ -21,6 +21,8 @@ public class AnswerService {
         return answerRepository.findAllByIsCorrectIsTrue();
    }
 
+
+
    public void deleteAnswer(Long id){
         answerRepository.delete(answerRepository.findById(id).orElseThrow());
    }

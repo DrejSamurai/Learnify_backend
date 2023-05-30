@@ -14,23 +14,15 @@ import java.util.List;
 public class QuizService {
     private final QuizRepository quizRepository;
 
-    public Quiz addQuiz(QuizRequest request){
-        Quiz quiz = new Quiz(
-                request.getTime(),
-                request.getCategory(),
-                request.getNumberOfQuestions(),
-                request.getScoreToPass());
+    public Quiz addQuiz(Quiz quiz){
         quizRepository.save(quiz);
         return quiz;
     }
 
-    public Quiz updateQuiz(QuizRequest request, Long quizId){
-        Quiz quiz = quizRepository.findById(quizId).orElseThrow();
-        quiz.setTime(request.getTime());
-        quiz.setCategory(request.getCategory());
-        quiz.setScoreToPass(request.getScoreToPass());
-        quiz.setNumberOfQuestions(request.getNumberOfQuestions());
-        quizRepository.save(quiz);
+    public Quiz updateQuiz(Quiz quiz, Long quizId){
+        Quiz quiz_old = quizRepository.findById(quizId).orElseThrow();
+        quiz_old.setQuestion(quiz.getQuestion());
+        quizRepository.save(quiz_old);
         return quiz;
     }
 

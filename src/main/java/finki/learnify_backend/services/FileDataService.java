@@ -20,16 +20,20 @@ public class FileDataService {
     private final FileDataRepository fileDataRepository;
     private final String filePath = "C:\\Users\\Drej\\Desktop\\IKT_Project\\Learnify_backend\\src\\main\\resources\\courseImages\\";
     public String uploadImageToFileSystem(MultipartFile file) throws IOException {
+        String file_name = file.getOriginalFilename().split("\\.")[0]
+                + System.currentTimeMillis() + "."
+                + file.getOriginalFilename().split("\\.")[1];
+
         FileData fileData = fileDataRepository.
                 save(FileData.builder()
-                .name(file.getOriginalFilename())
+                .name(file_name)
                 .type(file.getContentType())
                 .filePath(filePath + file.getOriginalFilename())
                 .build());
 
-        file.transferTo(new File(filePath + file.getOriginalFilename()));
+        file.transferTo(new File(filePath + file_name));
 
-            return "File uploaded successfully:" + file.getOriginalFilename();
+            return file_name;
     }
 
     public byte[] downloadImageFromFileSystem(String fileName) throws IOException {
