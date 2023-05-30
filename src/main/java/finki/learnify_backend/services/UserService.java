@@ -17,4 +17,12 @@ public class UserService {
         userRepository.save(user);
         return user;
     }
+
+    public User findById(Long id) {
+        return this.userRepository.findById(id).orElseThrow();
+    }
+
+    public User findByEmail(String email) {
+        return this.userRepository.findByEmail(email).orElseThrow();
+    }
 }

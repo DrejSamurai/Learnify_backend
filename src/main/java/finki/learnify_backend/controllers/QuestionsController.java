@@ -8,12 +8,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/question")
+@RequestMapping("/api/course-reviews")
 @RequiredArgsConstructor
+@CrossOrigin("http://localhost:3000")
 public class QuestionsController {
     private final QuestionService questionService;
-
-    @PostMapping("/addQuestion") public ResponseEntity<Question> register(
+    @PostMapping("/addQuestion")
+    public ResponseEntity<Question> addQuestion(
             @RequestBody QuestionRequest request){
         return ResponseEntity.ok(questionService.addQuestion(request));
     }

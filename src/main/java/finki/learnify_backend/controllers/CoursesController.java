@@ -1,5 +1,6 @@
 package finki.learnify_backend.controllers;
 
+import finki.learnify_backend.models.dto.CourseDTO;
 import finki.learnify_backend.models.dto.EnrollmentDTO;
 import finki.learnify_backend.models.Course;
 import finki.learnify_backend.services.CourseService;
@@ -25,7 +26,8 @@ public class CoursesController {
     @PostMapping("/all-courses")
     public Page<Course> getAllCourses(@RequestParam(defaultValue = "0") Integer pageNo,
                                       @RequestParam(defaultValue = "3") Integer pageSize,
-                                      @RequestParam(defaultValue = "id") String sortBy){
+                                      @RequestParam(defaultValue = "id") String sortBy,
+                                      @RequestParam String category){
         return this.courseService.listAllCourses(pageNo, pageSize, sortBy);
     }
     @PostMapping("/all-courses/category")
@@ -35,5 +37,20 @@ public class CoursesController {
     @PostMapping("/enroll-user")
     private ResponseEntity<Course> enrollUser(@RequestBody EnrollmentDTO enrollmentDto){
         return ResponseEntity.ok().body(this.courseService.enrollUser(enrollmentDto));
+    }
+
+    @PostMapping("course/create")
+    private ResponseEntity<Course> create(@RequestBody CourseDTO courseDto) {
+        return ResponseEntity.ok().body(this.courseService.create(courseDto));
+    }
+
+    @PutMapping("course/edit/{id}")
+    private ResponseEntity<Course> edit(@PathVariable Long id, @RequestBody CourseDTO courseDto) {
+        return ResponseEntity.ok().body(this.courseService.edit(id, courseDto));
+    }
+
+    @PostMapping("/delete/{id}")
+    private void delete(@PathVariable Long id){
+        this.courseService.removeCourse(id);
     }
 }

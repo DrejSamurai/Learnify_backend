@@ -12,65 +12,39 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.Instant;
+import java.util.Date;
 import java.util.Objects;
 
-@Entity
+@Entity(name = "course_reviews")
 @Data
 @RequiredArgsConstructor
-@Table(name = "reviews",
-        uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "course_id"}))
+@IdClass(CourseReviewId.class)
 public class Review {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
-    @Column(nullable = false)
-    private Integer rating;
-
-    @Column(nullable = false)
-    private String content;
-
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne
+    @JoinColumn(
+            name = "course_id",
+            referencedColumnName = "id",
+            nullable = false
+    )
     @JsonBackReference
-    @JoinColumn(name = "user_id")
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private User user;
-
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JsonBackReference
-    @JoinColumn(name = "course_id")
-    @OnDelete(action = OnDeleteAction.CASCADE)
     private Course course;
 
-    @CreationTimestamp
+    @Id
+    @ManyToOne
+    @JoinColumn(
+            name = "user_id",
+            referencedColumnName = "id",
+            nullable = false
+    )
+    private User user;
+
+    @Column(name = "rating_value", nullable = false)
+    private Double rating;
+
+    @Column(name = "rating_comment", nullable = false)
+    private String comment;
+
     @Column(nullable = false)
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private Instant createdAt;
-
-    public Review(Integer rating, String content, User user, Course course) {
-        this.rating = rating;
-        this.content = content;
-        this.user = user;
-        this.course = course;
-    }
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Review review = (Review) o;
-        return id != null && Objects.equals(id, review.id);
-    }
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
-    }
-    @Override
-    public String toString() {
-        return "Review{" +
-                "id=" + id +
-                ", rating=" + rating +
-                ", content='" + content + '\'' +
-                '}';
-    }
-
+    private Date createdAt;
 }
